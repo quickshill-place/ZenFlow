@@ -5,7 +5,7 @@ import Quickshell
 import QtQuick.Layouts
 import Quickshell.Services.UPower
 import "root:/colors.js" as Colors
-import "root:/widgets/styles"
+import "root:/Widgets/styles"
 PopupWindow {
     id: poppie
     color: "#BB" + Colors.background.slice(1)

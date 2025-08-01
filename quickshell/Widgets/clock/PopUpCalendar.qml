@@ -4,7 +4,7 @@ import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
 import "root:/colors.js" as Colors
-import qs.widgets.styles
+import qs.Widgets.styles
 
 Scope {
     id: scopie

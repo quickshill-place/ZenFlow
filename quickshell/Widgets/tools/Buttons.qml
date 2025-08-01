@@ -30,7 +30,7 @@ WindowTools {
 
     ToolButtons {
         property bool toggle: false
-        command: "qs -p /home/zen/zenflakes/config/quickshell/widgets/tools/buttons/screenshot/Geom.qml"
+        command: "qs -p /home/zen/zenflakes/config/quickshell/Widgets/tools/buttons/screenshot/Geom.qml"
         text: "Suspend"
         icon: getIcon()
 
@@ -44,7 +44,7 @@ WindowTools {
         text: "scrshot"
         icon: "screenshot"
         property bool show: true
-        command: "qs -p /home/zen/zenflakes/config/quickshell/widgets/tools/buttons/screenshot/Geom.qml"
+        command: "qs -p /home/zen/zenflakes/config/quickshell/Widgets/tools/buttons/screenshot/Geom.qml"
     }
 
     

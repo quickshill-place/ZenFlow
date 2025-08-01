@@ -6,7 +6,7 @@ import Quickshell.Hyprland
 
 import "root:/components" as Components
 import "root:/colors.js" as Colors
-import "root:/widgets/tools/Buttons.qml"
+import "root:/Widgets/tools/Buttons.qml"
 PanelWindow {
 	id: geom
 

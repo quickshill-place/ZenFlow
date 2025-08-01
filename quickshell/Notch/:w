@@ -1,13 +1,13 @@
 import Quickshell
 import QtQuick
 import QtQuick.Controls
-import qs.widgets.styles
+import qs.Widgets.styles
 import "../colors.js" as Colors
 import Quickshell.Io
-import qs.widgets.clock
-import qs.widgets.battery
+import qs.Widgets.clock
+import qs.Widgets.battery
 import QtQuick.Shapes
-import qs.widgets.workspaces
+import qs.Widgets.workspaces
 
 PanelWindow {
     id: root

@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.SystemTray
-import qs.widgets.styles
+import qs.Widgets.styles
 
 // TODO: More fancy animation
 Item {

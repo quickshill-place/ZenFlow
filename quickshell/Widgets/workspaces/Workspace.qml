@@ -4,11 +4,33 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Widgets
 import Quickshell.Wayland
-import qs.widgets.styles
+import qs.Widgets.styles
+import qs.Settings
 
 Item {
     id: workie
     readonly property string appTitle: ToplevelManager.activeToplevel.title
+    property bool shouldShow: false
+    property bool finallyHidden: false
+
+    Timer {
+        id: visibilityTimer
+        interval: 1200
+        running: false
+        onTriggered: {
+            workie.shouldShow = false;
+            hideTimer.restart();
+        }
+    }
+
+    Timer {
+        id: hideTimer
+        interval: 300
+        running: false
+        onTriggered: {
+            workie.finallyHidden = true;
+        }
+    }
     anchors.centerIn: parent
     function getIcon() {
         var icon = Quickshell.iconPath(ToplevelManager.activeToplevel.appId.toLowerCase(), true);
@@ -28,11 +50,11 @@ Item {
         target: ToplevelManager
         function onActiveToplevelChanged() {
             if (ToplevelManager.activeToplevel?.appId) {
-                activeWindowWrapper.shouldShow = true;
-                activeWindowWrapper.finallyHidden = false;
+                workie.shouldShow = true;
+                workie.finallyHidden = false;
                 visibilityTimer.restart();
             } else {
-                activeWindowWrapper.shouldShow = false;
+                workie.shouldShow = false;
                 hideTimer.restart();
                 visibilityTimer.stop();
             }
