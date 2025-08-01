@@ -7,6 +7,7 @@ import Quickshell.Io
 Singleton {
     id: root
 
+    property alias colors: themeData
     function applyOpacity(color, opacity) {
         return color.replace("#", "#" + opacity);
     }
@@ -93,85 +94,18 @@ Singleton {
             property string darkblue: "#3d405b"
             property string cyan_green: "#81b29a"
             property string cream: "#f2cc8f"
+            // Font Properties
+            property string fontFamily: "ZedMono Nerd Font"         // Family for all text
+
+            // Font size multiplier - adjust this in Settings.json to scale all fonts
+            property real fontSizeMultiplier: Settings.settings.fontSizeMultiplier || 1.0
+
+            // Base font sizes (multiplied by fontSizeMultiplier)
+            property int fontSizeHeader: Math.round(32 * fontSizeMultiplier)     // Headers and titles
+            property int fontSizeBody: Math.round(16 * fontSizeMultiplier)       // Body text and general content
+            property alias colors: themeData
+            property int fontSizeSmall: Math.round(14 * fontSizeMultiplier)      // Small text like clock, labels
+            property int fontSizeCaption: Math.round(12 * fontSizeMultiplier)    // Captions and fine print
         }
     }
-
-    // Backgrounds
-    property color backgroundPrimary: themeData.backgroundPrimary
-    property color backgroundSecondary: themeData.backgroundSecondary
-    property color backgroundTertiary: themeData.backgroundTertiary
-
-    // Surfaces & Elevation
-    property color surface: themeData.surface
-    property color surfaceVariant: themeData.surfaceVariant
-
-    // Text Colors
-    property color textPrimary: themeData.textPrimary
-    property color textSecondary: themeData.textSecondary
-    property color textDisabled: themeData.textDisabled
-
-    // Accent Colors
-    property color accentPrimary: themeData.accentPrimary
-    property color accentSecondary: themeData.accentSecondary
-    property color accentTertiary: themeData.accentTertiary
-
-    // Error/Warning
-    property color error: themeData.error
-    property color warning: themeData.warning
-
-    // Highlights & Focus
-    property color highlight: themeData.highlight
-    property color rippleEffect: themeData.rippleEffect
-
-    // Additional Theme Properties
-    property color onAccent: themeData.onAccent
-    property color outline: themeData.outline
-
-    // Shadows & Overlays
-    property color shadow: applyOpacity(themeData.shadow, "B3")
-    property color overlay: applyOpacity(themeData.overlay, "66")
-
-    // Base Colors
-    property color background: themeData.background
-    property color foreground: themeData.foreground
-    property color primary: themeData.primary
-    property color secondary: themeData.secondary
-
-    // Terminal Colors (ANSI)
-    property color color0: themeData.color0
-    property color color1: themeData.color1
-    property color color2: themeData.color2
-    property color color3: themeData.color3
-    property color color4: themeData.color4
-    property color color5: themeData.color5
-    property color color6: themeData.color6
-    property color color7: themeData.color7
-    property color color8: themeData.color8
-    property color color9: themeData.color9
-    property color color10: themeData.color10
-    property color color11: themeData.color11
-    property color color12: themeData.color12
-    property color color13: themeData.color13
-    property color color14: themeData.color14
-    property color color15: themeData.color15
-
-    // Named Colors
-    property color light_beige: themeData.light_beige
-    property color blue: themeData.blue
-    property color brick_orange: themeData.brick_orange
-    property color darkblue: themeData.darkblue
-    property color cyan_green: themeData.cyan_green
-    property color cream: themeData.cream
-
-    // Font Properties
-    property string fontFamily: "ZedMono Nerd Font"         // Family for all text
-
-    // Font size multiplier - adjust this in Settings.json to scale all fonts
-    property real fontSizeMultiplier: Settings.settings.fontSizeMultiplier || 1.0
-
-    // Base font sizes (multiplied by fontSizeMultiplier)
-    property int fontSizeHeader: Math.round(32 * fontSizeMultiplier)     // Headers and titles
-    property int fontSizeBody: Math.round(16 * fontSizeMultiplier)       // Body text and general content
-    property int fontSizeSmall: Math.round(14 * fontSizeMultiplier)      // Small text like clock, labels
-    property int fontSizeCaption: Math.round(12 * fontSizeMultiplier)    // Captions and fine print
 }

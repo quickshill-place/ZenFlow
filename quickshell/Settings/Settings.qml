@@ -1,4 +1,5 @@
 pragma Singleton
+pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import Quickshell.Io
@@ -8,8 +9,8 @@ Singleton {
 
     property string shellName: "ZenFlow"
     property string settingsDir: Quickshell.env("HOME") + "/zenflow/quickshell/Settings"
-    property string settingsFile: "/Settings.json"
-    property string themeFile: "/Theme.json"
+    property string settingsFile: Quickshell.env("HOME") + "/.config/Settings.json"
+    property string themeFile: Quickshell.env("HOME") + "/zenflow/quickshell/Settings/Theme.json"
     property var settings: settingAdapter
 
     FileView {
