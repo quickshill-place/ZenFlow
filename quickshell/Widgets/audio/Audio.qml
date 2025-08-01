@@ -86,12 +86,14 @@ Scope {
                         topMargin: 15
                     }
 
-                    IconImage {
+                    Text {
                         id: icon
-                        Layout.alignment: Qt.AlignHCenter
-                        implicitSize: 20
 
-                        source: Quickshell.iconPath(updateIcon())
+                        font.family: "tabler-icons"
+                        font.pointSize: 16
+
+                        text: updateIcon()
+                        Layout.alignment: Qt.AlignHCenter
 
                         function updateIcon() {
                             var volume = Pipewire.defaultAudioSink?.audio.volume ?? 0;
@@ -99,20 +101,18 @@ Scope {
 
                             // Check mute state first
                             if (muted) {
-                                return "/home/zen/zenflakes/config/quickshell/icons/speakers/speaker-simple-none.svg";
+                                return "\ueb50";
                             }
 
                             // Then check volume levels
                             if (volume > 0.9) {
-                                return "/home/zen/zenflakes/config/quickshell/icons/speakers/speaker-simple-high.svg";
+                                return "\ueb51";
                             } else if (volume > 0.5) {
-                                return "/home/zen/zenflakes/config/quickshell/icons/speakers/speaker-simple-high.svg";
+                                return "\ueb51";
                             } else if (volume > 0.3) {
-                                return "/home/zen/zenflakes/config/quickshell/icons/speakers/speaker-simple-low.svg";
+                                return "\ueb4f";
                             } else if (volume >= 0.025) {
-                                return "/home/zen/zenflakes/config/quickshell/icons/speakers/speaker-simple-low.svg";
-                            } else {
-                                return "/home/zen/zenflakes/config/quickshell/icons/speakers/speaker-simple-none.svg";
+                                return "\ueb4f";
                             }
                         }
 
@@ -120,7 +120,7 @@ Scope {
                         Connections {
                             target: Pipewire.defaultAudioSink?.audio
                             function onVolumeChanged() {
-                                icon.source = Quickshell.iconPath(icon.updateIcon());
+                                icon.text = icon.updateIcon();
                             }
                         }
 
@@ -128,7 +128,7 @@ Scope {
                         Connections {
                             target: Pipewire.defaultAudioSink?.audio
                             function onMutedChanged() {
-                                icon.source = Quickshell.iconPath(icon.updateIcon());
+                                icon.text = icon.updateIcon();
                             }
                         }
 

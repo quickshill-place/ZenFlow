@@ -27,9 +27,7 @@ Item {
         id: hideTimer
         interval: 300
         running: false
-        onTriggered: {
-            workie.finallyHidden = true;
-        }
+        onTriggered: workie.finallyHidden = true
     }
     anchors.centerIn: parent
     function getIcon() {

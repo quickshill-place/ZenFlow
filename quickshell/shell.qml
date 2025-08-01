@@ -11,8 +11,6 @@ import qs.Notch
 
 Scope {
 
-    Audio {}
-
     Notch {}
 
     Connections {

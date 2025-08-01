@@ -62,11 +62,13 @@ Singleton {
             property string shadow: "#000000"
             property string overlay: "#11121A"
 
+            // Base Colors
             property string background: "#070704"
             property string foreground: "#FFFFFF"
             property string primary: "#c8cc78"
             property string secondary: "#c9c9a6"
 
+            // Terminal Colors (ANSI)
             property string color0: "#000000"
             property string color1: "#ffb595"
             property string color2: "#b6d086"
@@ -75,7 +77,6 @@ Singleton {
             property string color5: "#f4b2e3"
             property string color6: "#84d5c4"
             property string color7: "#82d3e0"
-
             property string color8: "#82d3e0"
             property string color9: "#ffb597"
             property string color10: "#f5b2e1"
@@ -84,6 +85,8 @@ Singleton {
             property string color13: "#f9b1da"
             property string color14: "#94d5a9"
             property string color15: "#82d3e0"
+
+            // Named Colors
             property string light_beige: "#f4f1de"
             property string blue: "#006fff"
             property string brick_orange: "#e07a5f"
@@ -128,8 +131,40 @@ Singleton {
     property color shadow: applyOpacity(themeData.shadow, "B3")
     property color overlay: applyOpacity(themeData.overlay, "66")
 
+    // Base Colors
+    property color background: themeData.background
+    property color foreground: themeData.foreground
+    property color primary: themeData.primary
+    property color secondary: themeData.secondary
+
+    // Terminal Colors (ANSI)
+    property color color0: themeData.color0
+    property color color1: themeData.color1
+    property color color2: themeData.color2
+    property color color3: themeData.color3
+    property color color4: themeData.color4
+    property color color5: themeData.color5
+    property color color6: themeData.color6
+    property color color7: themeData.color7
+    property color color8: themeData.color8
+    property color color9: themeData.color9
+    property color color10: themeData.color10
+    property color color11: themeData.color11
+    property color color12: themeData.color12
+    property color color13: themeData.color13
+    property color color14: themeData.color14
+    property color color15: themeData.color15
+
+    // Named Colors
+    property color light_beige: themeData.light_beige
+    property color blue: themeData.blue
+    property color brick_orange: themeData.brick_orange
+    property color darkblue: themeData.darkblue
+    property color cyan_green: themeData.cyan_green
+    property color cream: themeData.cream
+
     // Font Properties
-    property string fontFamily: "Roboto"         // Family for all text
+    property string fontFamily: "ZedMono Nerd Font"         // Family for all text
 
     // Font size multiplier - adjust this in Settings.json to scale all fonts
     property real fontSizeMultiplier: Settings.settings.fontSizeMultiplier || 1.0

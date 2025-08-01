@@ -7,7 +7,7 @@ import qs.Widgets.styles
 import qs.Widgets.workspaces
 import qs.Widgets.clock
 import qs.Widgets.battery
-import "../colors.js" as Colors
+import qs.Widgets.audio
 
 PanelWindow {
     id: root
@@ -76,7 +76,9 @@ PanelWindow {
                 anchors.bottom: page_2.top
                 anchors.bottomMargin: e_rect.margin
 
-                Workspace {}
+                IntegratedAudio {
+                    anchors.fill: parent
+                }
                 // Simplified opacity - no complex conditions
                 opacity: SwipeView.isCurrentItem ? 1.0 : (e_rect.isScrolling && (SwipeView.isNextItem || SwipeView.isPreviousItem)) ? 0.75 : 0.0
 

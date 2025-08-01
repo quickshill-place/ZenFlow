@@ -6,10 +6,10 @@ import qs.Services
 
 Singleton {
 
-    property string shellName: "Noctalia"
-    property string settingsDir: Quickshell.env("NOCTALIA_SETTINGS_DIR") || (Quickshell.env("XDG_CONFIG_HOME") || Quickshell.env("HOME") + "/.config") + "/" + shellName + "/"
-    property string settingsFile: "../Settings.json"
-    property string themeFile: "./Theme.json"
+    property string shellName: "ZenFlow"
+    property string settingsDir: Quickshell.env("HOME") + "/zenflow/quickshell/Settings"
+    property string settingsFile: "/Settings.json"
+    property string themeFile: "/Theme.json"
     property var settings: settingAdapter
 
     FileView {
@@ -32,12 +32,18 @@ Singleton {
         }
         JsonAdapter {
             id: settingAdapter
-            property string weatherCity: "Dinslaken"
+            property string videoPath: Quickshell.env("HOME") + "/Videos"
             property string profileImage: Quickshell.env("HOME") + "/.face"
-            property bool useFahrenheit: false
             property string wallpaperFolder: Quickshell.env("HOME") + "/Wallpapers"
+            property string weatherCity: ""
             property string currentWallpaper: ""
-            property string videoPath: "~/Videos/"
+            property string wallpaperResize: "crop"
+            property string transitionType: "random"
+            property string visualizerType: "radial"
+            property int wallpaperInterval: 300
+            property int taskbarIconSize: 24
+            property int transitionFps: 90
+            property bool useFahrenheit: false
             property bool showActiveWindowIcon: false
             property bool showSystemInfoInBar: false
             property bool showCorners: true
@@ -45,18 +51,12 @@ Singleton {
             property bool showMediaInBar: false
             property bool randomWallpaper: false
             property bool useWallpaperTheme: false
-            property int wallpaperInterval: 300
-            property string wallpaperResize: "crop"
-            property int transitionFps: 90
-            property string transitionType: "random"
-            property real transitionDuration: 1.1
-            property string visualizerType: "radial"
             property bool reverseDayMonth: false
             property bool use12HourClock: false
             property bool dimPanels: true
-            property real fontSizeMultiplier: 1.0  // Font size multiplier (1.0 = normal, 1.2 = 20% larger, 0.8 = 20% smaller)
-            property int taskbarIconSize: 24  // Taskbar icon button size in pixels (default: 32, smaller: 24, larger: 40)
-            property var pinnedExecs: [] // Added for AppLauncher pinned apps
+            property real fontSizeMultiplier: 1.0
+            property real transitionDuration: 1.1
+            property var pinnedExecs: []
         }
     }
 
