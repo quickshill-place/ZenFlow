@@ -3,7 +3,6 @@ import QtQuick
 import QtQuick.Controls
 import Quickshell.Widgets
 import Quickshell
-import "root:/icons/icons.js" as Icons
 import QtQuick.Effects
 
 Item {
