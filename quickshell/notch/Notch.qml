@@ -3,19 +3,21 @@ import QtQuick
 import QtQuick.Controls
 import qs.widgets.styles
 import "../colors.js" as Colors
+import Quickshell.Io
 import qs.widgets.clock
 import qs.widgets.battery
 import QtQuick.Shapes
 
 PanelWindow {
+    id: root
     anchors {
         left: true
         right: true
         top: true
         bottom: true
     }
-
     color: "transparent"
+
     mask: Region {
         Region {
             x: e_rect.x
@@ -30,29 +32,166 @@ PanelWindow {
         radius: e_rect.show ? 16 : 200
         implicitWidth: e_rect.show ? 404 : 48
         implicitHeight: e_rect.show ? 764 : 200
-        color: Colors.foreground
-        focus: true  // Required to receive keyboard input
+        color: "transparent"
+        focus: true
 
+        property real margin: 20
         property bool show: false
         property bool contentExpanded: false
+        property bool isScrolling: false
 
         Keys.onEscapePressed: {
             e_rect.show = false;
         }
 
-        Clock {
-            id: clockie
-            rotation: 270
-            visible: e_rect.show ? false : true
-            anchors.centerIn: parent
+        Timer {
+            id: scrollTimer
+            interval: 1000
+            onTriggered: e_rect.isScrolling = false
         }
 
-        Battery {
-            rotation: 270
-            visible: e_rect.show ? false : true
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: -e_rect.implicitHeight / 2 + 30
+        // Simplified SwipeView without conflicting anchors
+        SwipeView {
+            id: swipey
+            anchors.fill: parent
+            orientation: Qt.Vertical
+            visible: !e_rect.show
+
+            // Global wheel handlers for the SwipeView
+            WheelHandler {
+                acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
+                onWheel: {
+                    console.log("WheelHandler activated");
+                    e_rect.isScrolling = true;
+                    scrollTimer.restart();
+                }
+            }
+
+            // Page 1
+            StyledRect {
+                id: page_1
+                color: "#fff"
+                radius: 50
+                anchors.bottom: page_2.top
+                anchors.bottomMargin: e_rect.margin
+
+                StyledText {
+                    text: "hi1"
+                    rotation: 90
+                    anchors.centerIn: parent
+                }
+
+                // Simplified opacity - no complex conditions
+                opacity: SwipeView.isCurrentItem ? 1.0 : (e_rect.isScrolling && (SwipeView.isNextItem || SwipeView.isPreviousItem)) ? 0.75 : 0.0
+
+                Behavior on opacity {
+                    OpacityAnimator {
+                        duration: 200
+                        easing.type: Easing.InQuad
+                    }
+                }
+            }
+
+            // Page 2
+            StyledRect {
+                id: page_2
+                color: "#fff"
+                radius: 50
+                anchors.top: page_1.bottom
+                anchors.topMargin: e_rect.margin
+
+                StyledText {
+
+                    text: `${Quickshell.env("USER")}@${hostnameCollector.text.trim()}`
+                    rotation: 270
+                    anchors.centerIn: parent
+                }
+                Process {
+                    id: hostnameProcess
+                    command: ["hostname"]
+                    running: true
+
+                    stdout: StdioCollector {
+                        id: hostnameCollector
+                        waitForEnd: true
+
+                        onStreamFinished: {}
+                    }
+                }
+
+                opacity: SwipeView.isCurrentItem ? 1.0 : (e_rect.isScrolling && (SwipeView.isNextItem || SwipeView.isPreviousItem)) ? 0.75 : 0.0
+
+                Behavior on opacity {
+                    OpacityAnimator {
+                        duration: 200
+                        easing.type: Easing.InQuad
+                    }
+                }
+            }
+
+            // Page 3
+            StyledRect {
+                id: page_3
+                color: "#fff"
+                radius: 50
+                anchors.top: page_2.bottom
+                anchors.topMargin: e_rect.margin
+
+                Clock {
+                    id: clockie
+                    rotation: 270
+                    anchors.centerIn: parent
+                }
+
+                Battery {
+                    rotation: 270
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 32
+                    z: 102
+                }
+
+                opacity: SwipeView.isCurrentItem ? 1.0 : (e_rect.isScrolling && (SwipeView.isNextItem || SwipeView.isPreviousItem)) ? 0.75 : 0.0
+
+                Behavior on opacity {
+                    OpacityAnimator {
+                        duration: 200
+                        easing.type: Easing.InQuad
+                    }
+                }
+            }
         }
+
+        // Expanded content (when show is true)
+        Rectangle {
+            anchors.fill: parent
+            color: "#50ffffff"
+            radius: 16
+            visible: e_rect.show
+
+            Text {
+                text: "Expanded Content"
+                anchors.centerIn: parent
+                color: "#333"
+            }
+        }
+
+        // Scroll indicator overlay
+        Rectangle {
+            width: parent.width
+            height: parent.height
+            radius: e_rect.show ? 16 : 50
+            anchors.centerIn: parent
+            color: "#30ffffff"
+            opacity: e_rect.isScrolling && !e_rect.show ? 1 : 0
+
+            Behavior on opacity {
+                OpacityAnimator {
+                    duration: 200
+                    easing.type: Easing.InQuad
+                }
+            }
+        }
+
         onShowChanged: {
             if (show) {
                 contentExpandTimer.start();
@@ -63,7 +202,7 @@ PanelWindow {
 
         Timer {
             id: contentExpandTimer
-            interval: 160  // Slightly after main animation (200ms)
+            interval: 160
             onTriggered: e_rect.contentExpanded = true
         }
 
@@ -73,12 +212,14 @@ PanelWindow {
                 easing.type: Easing.InOutQuad
             }
         }
+
         Behavior on implicitHeight {
             NumberAnimation {
                 duration: 200
                 easing.type: Easing.InOutQuad
             }
         }
+
         Behavior on radius {
             NumberAnimation {
                 duration: 200
@@ -92,7 +233,6 @@ PanelWindow {
             leftMargin: 16
         }
 
-        // Fix: MouseArea that properly tracks the expanding rectangle
         MouseArea {
             id: mousearea
             property bool clickLocked: false
@@ -100,9 +240,12 @@ PanelWindow {
             anchors.fill: parent
 
             onClicked: {
-                e_rect.show = true;
-                clickLocked = true;
+                if (!e_rect.show) {
+                    e_rect.show = true;
+                    clickLocked = true;
+                }
             }
+
             onDoubleClicked: {
                 e_rect.show = false;
                 clickLocked = false;

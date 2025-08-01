@@ -6,8 +6,7 @@ Text {
     verticalAlignment: Text.AlignVCenter
     font {
         family: "ZedMono Nerd Font"
-        pointSize: 16
+        pointSize: 12
     }
-    color: Colors.primary
     linkColor: Colors.color12
 }
