@@ -4,7 +4,6 @@ import QtQuick.Controls
 import Quickshell
 import QtQuick.Layouts
 import Quickshell.Services.UPower
-import "root:/colors.js" as Colors
 import qs.Widgets.styles
 
 PopupWindow {

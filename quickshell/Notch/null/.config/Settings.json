@@ -1,0 +1,28 @@
+{
+    "currentWallpaper": "",
+    "dimPanels": true,
+    "fontSizeMultiplier": 1,
+    "pinnedExecs": [
+    ],
+    "profileImage": "/home/zen/.face",
+    "randomWallpaper": false,
+    "reverseDayMonth": false,
+    "showActiveWindowIcon": false,
+    "showCorners": true,
+    "showMediaInBar": false,
+    "showSystemInfoInBar": false,
+    "showTaskbar": true,
+    "taskbarIconSize": 24,
+    "transitionDuration": 1.1,
+    "transitionFps": 90,
+    "transitionType": "random",
+    "use12HourClock": false,
+    "useFahrenheit": false,
+    "useWallpaperTheme": false,
+    "videoPath": "/home/zen/Videos",
+    "visualizerType": "radial",
+    "wallpaperFolder": "/home/zen/Wallpapers",
+    "wallpaperInterval": 300,
+    "wallpaperResize": "crop",
+    "weatherCity": ""
+}

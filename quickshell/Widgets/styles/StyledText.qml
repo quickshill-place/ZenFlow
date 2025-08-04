@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import "root:/colors.js" as Colors
 
 Text {
     verticalAlignment: Text.AlignVCenter

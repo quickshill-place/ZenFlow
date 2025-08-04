@@ -3,7 +3,6 @@ import Quickshell.Widgets
 import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
-import "root:/colors.js" as Colors
 import qs.Widgets.styles
 
 Scope {

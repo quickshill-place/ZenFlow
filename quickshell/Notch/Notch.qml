@@ -8,6 +8,7 @@ import qs.Widgets.workspaces
 import qs.Widgets.clock
 import qs.Widgets.battery
 import qs.Widgets.audio
+import qs.Settings
 
 PanelWindow {
     id: root
@@ -17,6 +18,7 @@ PanelWindow {
         top: true
         bottom: true
     }
+    visible: false
     color: "transparent"
 
     mask: Region {
@@ -71,7 +73,7 @@ PanelWindow {
             // Page 1
             StyledRect {
                 id: page_1
-                color: "#fff"
+                color: Theme.backgroundPrimary
                 radius: 50
                 anchors.bottom: page_2.top
                 anchors.bottomMargin: e_rect.margin

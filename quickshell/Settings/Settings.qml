@@ -1,5 +1,4 @@
 pragma Singleton
-pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import Quickshell.Io
@@ -7,7 +6,7 @@ import qs.Services
 
 Singleton {
 
-    property string shellName: "ZenFlow"
+    property string shellName: "Noctalia"
     property string settingsDir: Quickshell.env("HOME") + "/zenflow/quickshell/Settings"
     property string settingsFile: Quickshell.env("HOME") + "/.config/Settings.json"
     property string themeFile: Quickshell.env("HOME") + "/zenflow/quickshell/Settings/Theme.json"
@@ -28,7 +27,6 @@ Singleton {
             });
         }
         onLoadFailed: function (error) {
-            settingAdapter = {};
             writeAdapter();
         }
         JsonAdapter {

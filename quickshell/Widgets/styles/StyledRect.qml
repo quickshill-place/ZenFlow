@@ -1,7 +1,6 @@
 import QtQuick
 import Quickshell
 import Quickshell.Widgets
-import "root:/colors.js" as Colors
 
 Rectangle {
     radius: 16

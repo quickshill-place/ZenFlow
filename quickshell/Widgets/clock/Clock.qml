@@ -1,6 +1,5 @@
 import QtQuick
 import Quickshell
-import "root:/colors.js" as Colors
 import "../styles"
 
 Item {
@@ -28,6 +27,4 @@ Item {
         onEntered: clockie.show = true
         onExited: clockie.show = false
     }
-
-    PopUpCalendar {}
 }
