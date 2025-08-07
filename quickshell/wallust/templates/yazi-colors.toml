@@ -1,0 +1,165 @@
+# : Manager [[[
+
+[manager]
+cwd = { fg = "{{color10}}" }
+
+# Tab
+tab_active = { fg = "{{background}}", bg = "{{color4}}", bold = true }
+tab_inactive = { fg = "{{color12}}", bg = "{{color8}}" }
+tab_width = 1
+
+# Find
+find_keyword = { fg = "{{color1}}", bold = true, italic = true, underline = true }
+find_position = { fg = "{{color1}}", bold = true, italic = true }
+
+# Marker
+marker_copied = { fg = "{{color6}}", bg = "{{color6}}" }
+marker_cut = { fg = "{{color14}}", bg = "{{color14}}" }
+marker_marked = { fg = "{{color1}}", bg = "{{color1}}" }
+marker_selected = { fg = "{{color5}}", bg = "{{color5}}" }
+
+# Count
+count_copied = { fg = "{{background}}", bg = "{{color6}}" }
+count_cut = { fg = "{{background}}", bg = "{{color14}}" }
+count_selected = { fg = "{{background}}", bg = "{{color5}}" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "{{color8}}" }
+
+# : ]]]
+
+
+# : Status [[[
+
+[status]
+separator_open = ""
+separator_close = ""
+separator_style = { bg = "{{color8}}", fg = "#F4A261" }
+
+[mode]
+# Mode
+normal_main = { bg = "{{color4}}", fg = "{{background}}", bold = true }
+normal_alt  = { bg = "{{color8}}", fg = "{{color10}}" }
+
+# Select mode
+select_main = { bg = "{{color2}}", fg = "{{background}}", bold = true }
+select_alt  = { bg = "{{color8}}", fg = "{{color10}}" }
+
+# Unset mode
+unset_main = { bg = "{{color5}}", fg = "{{background}}", bold = true }
+unset_alt  = { bg = "{{color8}}", fg = "{{color10}}" }
+
+# Progress
+progress_label = { bold = true }
+progress_normal = { fg = "{{color4}}", bg = "{{color8}}" }
+progress_error = { fg = "{{color1}}", bg = "{{color8}}" }
+
+# Permissions
+permissions_t = { fg = "{{color10}}" }
+permissions_w = { fg = "{{color13}}" }
+permissions_x = { fg = "{{color9}}" }
+permissions_r = { fg = "{{color14}}" }
+permissions_s = { fg = "{{color12}}" }
+
+# : ]]]
+
+
+# : Select [[[
+
+[select]
+border = { fg = "{{color4}}" }
+active = { fg = "{{color5}}", bold = true }
+inactive = {}
+
+# : ]]]
+
+
+# : Input [[[
+
+[input]
+border = { fg = "{{color4}}" }
+value = { fg = "{{foreground}}" }
+
+# : ]]]
+
+
+# : Completion [[[
+
+[completion]
+border = { fg = "{{color4}}", bg = "{{background}}" }
+
+# : ]]]
+
+
+# : Tasks [[[
+
+[tasks]
+border = { fg = "{{color4}}" }
+title = {}
+hovered = { fg = "{{color14}}", underline = true }
+
+# : ]]]
+
+
+# : Which [[[
+
+[which]
+cols = 3
+mask = { bg = "{{color8}}" }
+cand = { fg = "{{color4}}" }
+rest = { fg = "{{background}}" }
+desc = { fg = "{{foreground}}" }
+separator = " ▶ "
+separator_style = { fg = "{{foreground}}" }
+
+# : ]]]
+
+
+# : Help [[[
+
+[help]
+on = { fg = "{{foreground}}" }
+run = { fg = "{{foreground}}" }
+footer = { fg = "{{background}}", bg = "{{color2}}" }
+
+# : ]]]
+
+
+# : Notify [[[
+
+[notify]
+title_info = { fg = "{{color5}}" }
+title_warn = { fg = "{{color3}}" }
+title_error = { fg = "{{color1}}" }
+
+# : ]]]
+
+
+# : File-specific styles [[[
+
+[filetype]
+
+rules = [
+    # Images
+    { mime = "image/*", fg = "#94e2d5" },
+
+    # Media
+    { mime = "{audio,video}/*", fg = "#f9e2af" },
+
+    # Archives
+    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#f5c2e7" },
+
+    # Documents
+    { mime = "application/{pdf,doc,rtf}", fg = "#a6e3a1" },
+
+    # Special files
+    { name = "*", is = "orphan", bg = "{{color1}}" },
+    { name = "*", is = "exec", fg = "{{color9}}" },
+
+    # Fallback
+    { name = "*", fg = "{{foreground}}" },
+    { name = "*/", fg = "{{color8}}" },
+]
+
+# : ]]]

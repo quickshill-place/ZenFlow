@@ -6,7 +6,7 @@ import qs.Services
 
 Singleton {
 
-    property string shellName: "Noctalia"
+    property string shellName: "ZenFlow"
     property string settingsDir: Quickshell.env("HOME") + "/zenflow/quickshell/Settings"
     property string settingsFile: Quickshell.env("HOME") + "/.config/Settings.json"
     property string themeFile: Quickshell.env("HOME") + "/zenflow/quickshell/Settings/Theme.json"
@@ -35,7 +35,7 @@ Singleton {
             property string profileImage: Quickshell.env("HOME") + "/.face"
             property string wallpaperFolder: Quickshell.env("HOME") + "/Wallpapers"
             property string weatherCity: ""
-            property string currentWallpaper: ""
+            property string currentWallpaper: Paths.home + "/Wallpapers/anime-girl-ballons.png"
             property string wallpaperResize: "crop"
             property string transitionType: "random"
             property string visualizerType: "radial"

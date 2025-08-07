@@ -1,0 +1,23 @@
+* {
+	font-family: "ZedMono Nerd Font";
+	
+}
+
+#head
+{
+	background-color: {{ color4 | darken(0.95)}};
+}
+#main-content-container
+{
+	background-color: {{ color4 | darken(0.95)}};
+}
+
+
+.l {
+
+	background-color: {{ color0 | darken(0.70)}};
+}
+.left-sidebar-inner {
+
+	background-color: {{ color0 | darken(0.70)}};
+}

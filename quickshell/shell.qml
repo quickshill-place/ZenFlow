@@ -8,10 +8,13 @@ import qs.Widgets.audio
 import qs.Widgets.border
 import qs.Apps.applaunch
 import qs.Notch
+import qs.Wallpaper
 
 Scope {
 
     Notch {}
+
+    Wallpaper {}
 
     Connections {
         function onReloadCompleted() {

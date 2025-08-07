@@ -65,9 +65,7 @@ Singleton {
     }
 
     function generateTheme() {
-        if (Settings.settings.useWallpaperTheme) {
-            generateThemeProcess.running = true;
-        }
+        generateThemeProcess.running = true;
     }
 
     Timer {
@@ -99,14 +97,13 @@ Singleton {
 
     Process {
         id: changeWallpaperProcess
-        command: ["swww", "img", "--resize", Settings.settings.wallpaperResize, "--transition-fps", Settings.settings.transitionFps.toString(), "--transition-type", transitionType, "--transition-duration", Settings.settings.transitionDuration.toString(), currentWallpaper]
+        command: ["sh", "-c", "echo ", currentWallpaper, ">", "~/.current-wall"]
         running: false
     }
 
     Process {
         id: generateThemeProcess
-        command: ["wallust", "run", currentWallpaper, "-u", "-k", "-d", "Templates"]
-        workingDirectory: Quickshell.shellDir
+        command: ["wallust", "run", currentWallpaper, "-u", "-k", "-d", "/home/zen/wallpaper-switcher/wallust"]
         running: false
     }
 }
