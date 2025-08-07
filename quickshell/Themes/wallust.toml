@@ -1,0 +1,19 @@
+
+backend = "resized"
+color_space = "labmixed"
+
+palette = "dark"
+check_contrast = true
+
+[templates]
+quickshell = { template = 'quickshell.json', target = '/home/zen/zenflow/quickshell/Settings/Theme.json' }
+gtk3 = { template = 'gtk-colors.css', target = "/home/zen/.config/gtk-3.0/custom-colors.css"}
+gtk4 = { template = 'gtk-colors.css', target = "/home/zen/.config/gtk-4.0/custom-colors.css"}
+
+midnight-discord = { template = 'midnight-discord.css', target = "/home/zen/.config/equibop/themes/colored-midnight.css"}
+cava = { template = 'cava-colors', target = "/home/zen/.config/cava/config"}
+yazi = { template = 'yazi-colors.toml', target = "/home/zen/.config/yazi/yazi-colors.toml"}
+ohmyposh = {template = 'oh-my-posh.toml', target = "/home/zen/.config/ompsh/theme.toml"}
+foot = {template = 'foot.ini', target = "/home/zen/.config/foot/foot.ini"}
+zellij = {template = 'zentheme.kdl', target = "/home/zen/.config/zellij/themes/zentheme.kdl"}
+logseq = {template = 'zenseq.css', target = "/home/zen/zadome/logseq/custom.css"}

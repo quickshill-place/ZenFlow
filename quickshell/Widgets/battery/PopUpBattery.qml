@@ -4,7 +4,7 @@ import QtQuick.Controls
 import Quickshell
 import QtQuick.Layouts
 import Quickshell.Services.UPower
-import qs.Widgets.styles
+import qs.Components
 
 PopupWindow {
     id: poppie

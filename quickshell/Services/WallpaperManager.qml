@@ -35,7 +35,6 @@ Singleton {
 
     function setCurrentWallpaper(path, isInitial) {
         currentWallpaper = path;
-        changeWallpaperProcess.running = true;
         generateTheme();
     }
 
@@ -96,14 +95,8 @@ Singleton {
     }
 
     Process {
-        id: changeWallpaperProcess
-        command: ["sh", "-c", "echo ", currentWallpaper, ">", "~/.current-wall"]
-        running: false
-    }
-
-    Process {
         id: generateThemeProcess
-        command: ["wallust", "run", currentWallpaper, "-u", "-k", "-d", "/home/zen/wallpaper-switcher/wallust"]
+        command: ["wallust", "run", currentWallpaper, "-u", "-k", "-d", "Themes"]
         running: false
     }
 }
