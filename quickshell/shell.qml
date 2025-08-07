@@ -9,10 +9,13 @@ import qs.Widgets.border
 import qs.Apps.applaunch
 import qs.Notch
 import qs.Wallpaper
+import qs.Menu
 
 Scope {
 
     Notch {}
+
+    Menu {}
 
     Wallpaper {}
 
