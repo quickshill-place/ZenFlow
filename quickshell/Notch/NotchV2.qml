@@ -24,6 +24,7 @@ MaskedPanel {
 
     StyledRect {
         id: rect
+        color: Settings.settings.darkMode ? Theme.backgroundPrimary : Theme.textPrimary
         radius: root.hasRadius ? 50 : 0
         width: root.expandContent ? 400 : 48
         height: root.expandContent ? parent.height / 1.5 : 200

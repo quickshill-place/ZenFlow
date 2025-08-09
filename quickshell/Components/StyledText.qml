@@ -8,5 +8,5 @@ Text {
         family: "ZedMono Nerd Font"
         pointSize: 12
     }
-    color: Settings.settings.isDark ? Theme.textPrimary : Theme.backgroundPrimary
+    color: Settings.settings.darkMode ? Theme.textPrimary : Theme.backgroundPrimary
 }
