@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Services.Pipewire
 import Quickshell.Widgets
 import qs.Settings
+import qs.Components
 
 Rectangle {
     id: root
@@ -23,8 +24,9 @@ Rectangle {
             topMargin: 15
         }
 
-        Text {
+        StyledText {
             id: icon
+            color: Theme.textPrimary
 
             font.family: "tabler-icons"
             font.pointSize: 16
@@ -103,8 +105,8 @@ Rectangle {
 
         Rectangle {
             id: volumeBackground
-            Layout.fillHeight: true
             Layout.alignment: Qt.AlignHCenter
+            implicitHeight: 130
             implicitWidth: 10
             radius: 20
             color: "#50" + "006fff"
@@ -180,11 +182,11 @@ Rectangle {
                     } else if (volume > 0.7) {
                         color = "#ff8f00";
                     } else if (volume > 0.5) {
-                        color = Settings.theme.color11;
+                        color = Theme.accentTertiary;
                     } else if (volume > 0.3) {
-                        color = Settings.theme.color2;
+                        color = Theme.accentPrimary;
                     } else {
-                        color = Settings.theme.foreground; // White for low volume
+                        color = Theme.textPrimary; // White for low volume
                     }
                 }
 

@@ -1,9 +1,9 @@
 import Quickshell
 import QtQuick
-import qs.Widgets.styles
 import qs.Components
 import qs.Settings
 import qs.Generics
+import qs.Notch
 
 PanelWindow {
     id: root
@@ -21,22 +21,45 @@ PanelWindow {
             height: menu.height
         }
     }
+
+    property bool show: Settings.settings.showMenu
+    property bool showContent: false
+    visible: showContent
     color: "transparent"
 
+    onShowChanged: {
+        if (show === false) {
+            // Start the hide timer
+            hideContentTimer.start();
+        } else {
+            showContent = true;
+        }
+    }
+    Timer {
+        id: hideContentTimer
+        interval: 350 // Adjust this value for the desired delay
+        onTriggered: showContent = false
+    }
     StyledRect {
         id: menu
         radius: 50
+        visible: root.showContent
         anchors.centerIn: parent
-        width: parent.width / 2
-        visible: false
-        height: parent.height / 2
-
+        implicitWidth: root.show ? parent.width / 2 : 0
+        implicitHeight: root.show ? parent.height / 2 : 0
+        Behavior on implicitWidth {
+            SpringyAnimation {}
+        }
+        Behavior on implicitHeight {
+            SpringyAnimation {}
+        }
         StyledRect {
             id: tabbie
             implicitHeight: 70
             anchors.top: parent.top
             anchors.topMargin: 16
             anchors.horizontalCenter: parent.horizontalCenter
+
             Text {
                 id: textie
                 property int counter
@@ -69,7 +92,6 @@ PanelWindow {
         StyledRect {
             implicitWidth: parent.width - 32
             implicitHeight: parent.height - tabbie.height
-            color: Theme.textPrimary
             radius: 50
             anchors.bottom: parent.bottom
             anchors.margins: 16

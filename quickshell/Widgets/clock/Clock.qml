@@ -1,6 +1,6 @@
 import QtQuick
 import Quickshell
-import "../styles"
+import qs.Components
 
 Item {
     id: clockie

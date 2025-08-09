@@ -1,3 +1,4 @@
+import qs.Settings
 import QtQuick
 import QtQuick.Layouts
 
@@ -7,5 +8,5 @@ Text {
         family: "ZedMono Nerd Font"
         pointSize: 12
     }
-    linkColor: Colors.color12
+    color: Settings.settings.isDark ? Theme.textPrimary : Theme.backgroundPrimary
 }

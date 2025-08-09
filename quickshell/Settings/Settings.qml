@@ -5,10 +5,10 @@ import Quickshell.Io
 import qs.Services
 
 Singleton {
-
+    id: singlie
     property string shellName: "ZenFlow"
     property string settingsDir: Quickshell.env("HOME") + "/zenflow/quickshell/Settings"
-    property string settingsFile: Quickshell.env("HOME") + "/.config/Settings.json"
+    property string settingsFile: Quickshell.env("HOME") + "/zenflow/quickshell/Settings.json"
     property string themeFile: Quickshell.env("HOME") + "/zenflow/quickshell/Settings/Theme.json"
     property var settings: settingAdapter
 
@@ -39,25 +39,38 @@ Singleton {
             property string wallpaperResize: "crop"
             property string transitionType: "random"
             property string visualizerType: "radial"
+            property string fontFamily: "ZedMono Nerd Font"
             property int wallpaperInterval: 300
+            property int animationDuration: 300
             property int taskbarIconSize: 24
             property int transitionFps: 90
+            //property int rotation: Direction.Top
             property bool useFahrenheit: false
             property bool showActiveWindowIcon: false
             property bool showSystemInfoInBar: false
             property bool showCorners: true
             property bool showTaskbar: true
+            property bool showMenu: true
+            property bool showNotch: false
             property bool showMediaInBar: false
             property bool randomWallpaper: false
             property bool useWallpaperTheme: false
             property bool reverseDayMonth: false
             property bool use12HourClock: false
             property bool dimPanels: true
-            property bool dark: true
+            property bool isDark: false
             property real fontSizeMultiplier: 1.0
             property real transitionDuration: 1.1
+            property real globalMargin: 16
+            property real borderWidth: 4
             property var pinnedExecs: []
         }
+    }
+    enum Direction {
+        Top,
+        Bottom,
+        Right,
+        Left
     }
 
     Connections {

@@ -3,7 +3,7 @@ import Quickshell.Widgets
 import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
-import qs.Widgets.styles
+import qs.Components
 
 Scope {
     id: scopie

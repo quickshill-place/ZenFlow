@@ -10,7 +10,24 @@ Singleton {
     function applyOpacity(color, opacity) {
         return color.replace("#", "#" + opacity);
     }
-
+    function scale(currentScreen) {
+        return 1.0;
+        // Per-monitor override from settings
+        try {
+            const overrides = Settings.settings.monitorScaleOverrides || {};
+            if (currentScreen && currentScreen.name && overrides[currentScreen.name] !== undefined) {
+                return overrides[currentScreen.name];
+            }
+        } catch (e)
+        // ignore
+        {}
+        // if (currentScreen && currentScreen.width != 0) {
+        //     var ratio = currentScreen.width / designScreenWidth;
+        //     // Limit the final scale range between [0.8...2]
+        //     return Math.max(0.8, Math.min(2.0, ratio));
+        // }
+        return 1.0;
+    }
     // FileView to load theme data from JSON file
     FileView {
         id: themeFile

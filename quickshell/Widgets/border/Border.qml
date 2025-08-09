@@ -1,7 +1,6 @@
 import Quickshell
 import QtQuick
 import QtQuick.Effects
-import "root:/colors.js" as Colors
 
 PanelWindow {
 
@@ -24,7 +23,7 @@ PanelWindow {
         Rectangle {
             id: rect
             anchors.fill: parent
-            color: "#80" + Colors.background.slice(1)
+            color: "#000"
             visible: false
         }
 

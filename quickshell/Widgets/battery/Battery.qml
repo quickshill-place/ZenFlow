@@ -102,4 +102,6 @@ Item {
     }
 
     PopUpBattery {}
+
+    WarningPopup {}
 }

@@ -41,8 +41,8 @@ PanelWindow {
     color: "transparent"
 
     Rectangle {
-        anchors.left: parent.left
-        anchors.leftMargin: 16
+        anchors.right: parent.right
+        anchors.rightMargin: 16
         anchors.verticalCenter: parent.verticalCenter
         radius: 50
         width: 48

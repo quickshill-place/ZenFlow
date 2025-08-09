@@ -10,12 +10,11 @@ import qs.Apps.applaunch
 import qs.Notch
 import qs.Wallpaper
 import qs.Menu
+import qs.Components
 
 Scope {
 
-    Notch {}
-
-    Menu {}
+    NotchV2 {}
 
     Wallpaper {}
 
