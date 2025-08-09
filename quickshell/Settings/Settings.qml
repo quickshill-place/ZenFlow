@@ -5,7 +5,6 @@ import Quickshell.Io
 import qs.Services
 
 Singleton {
-    id: singlie
     property string shellName: "ZenFlow"
     property string settingsDir: Quickshell.env("HOME") + "/zenflow/quickshell/Settings"
     property string settingsFile: Quickshell.env("HOME") + "/zenflow/quickshell/Settings.json"
@@ -39,7 +38,6 @@ Singleton {
             property string wallpaperResize: "crop"
             property string transitionType: "random"
             property string visualizerType: "radial"
-            property string fontFamily: "ZedMono Nerd Font"
             property int wallpaperInterval: 300
             property int animationDuration: 300
             property int taskbarIconSize: 24
@@ -58,11 +56,11 @@ Singleton {
             property bool reverseDayMonth: false
             property bool use12HourClock: false
             property bool dimPanels: true
-            property bool isDark: false
+            property bool isDark: true
+            property bool hasRadius: false
             property real fontSizeMultiplier: 1.0
             property real transitionDuration: 1.1
             property real globalMargin: 16
-            property real borderWidth: 4
             property var pinnedExecs: []
         }
     }

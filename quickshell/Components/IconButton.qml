@@ -28,7 +28,7 @@ MouseArea {
         text: root.icon
         font.family: "Material Symbols Outlined"
         font.pixelSize: 24
-        color: root.hovering ? Theme.onAccent : Theme.textPrimary
+        color: root.hovering ? (Theme.onAccent) : (Settings.settings.isDark ? Theme.textPrimary : Theme.backgroundPrimary)
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         opacity: root.enabled ? 1.0 : 0.5

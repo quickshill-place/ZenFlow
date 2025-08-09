@@ -10,49 +10,37 @@ import qs.Components
 StyledRect {
     id: mediaControl
     width: parent.width
-    height: 380
-    color: Theme.backgroundTertiary
+    height: parent.height
+    color: "transparent"
 
+    StraightSpectrum {
+        id: spectrum2
+        values: MusicManager.cavaValues
+        anchors.centerIn: parent
+        limit: 90 * Theme.scale(Screen)
+        usableOuter: parent.height / 2
+        z: -1
+        anchors.bottom: parent.bottom
+    }
     RowLayout {
         id: mediaRow
         height: parent.height
+        width: parent.width
         spacing: 8
 
         Item {
             id: albumArtContainer
-            width: 24 * Theme.scale(Screen)
-            height: 24 * Theme.scale(Screen)
+            width: parent.width * Theme.scale(Screen)
+            height: parent.height * Theme.scale(Screen)
             Layout.alignment: Qt.AlignVCenter
 
-            // Circular spectrum visualizer
-            CircularSpectrum {
-                id: spectrum
-                values: MusicManager.cavaValues
-                anchors.centerIn: parent
-                innerRadius: 10 * Theme.scale(Screen)
-                outerRadius: 18 * Theme.scale(Screen)
-                fillColor: Theme.accentPrimary
-                strokeColor: Theme.accentPrimary
-                strokeWidth: 0
-                z: 0
-            }
-
-            StraightSpectrum {
-                id: spectrum2
-                values: MusicManager.cavaValues
-                anchors.centerIn: parent
-                innerRadius: 300 * Theme.scale(Screen)
-                outerRadius: 400 * Theme.scale(Screen)
-                z: 0
-            }
-
             // Album art image
-            Rectangle {
+            ClippingRectangle {
                 id: albumArtwork
-                width: 20 * Theme.scale(Screen)
-                height: 20 * Theme.scale(Screen)
+                width: parent.width * Theme.scale(Screen)
+                height: parent.height * Theme.scale(Screen)
                 anchors.centerIn: parent
-                radius: 12 // circle
+                radius: Settings.settings.hasRadius ? Theme.radius : 0
                 color: Qt.darker(Theme.surface, 1.1)
                 border.color: Qt.rgba(Theme.accentPrimary.r, Theme.accentPrimary.g, Theme.accentPrimary.b, 0.3)
                 border.width: 1
@@ -68,19 +56,7 @@ StyledRect {
                     cache: false
                     asynchronous: true
                     source: MusicManager.trackArtUrl
-                    visible: source.toString() !== ""
-
-                    // Rounded corners using layer
-                    layer.enabled: true
-                    layer.effect: MultiEffect {
-                        maskEnabled: true
-                        maskSource: Rectangle {
-                            width: albumArt.width
-                            height: albumArt.height
-                            radius: albumArt.width / 2 // circle
-                            visible: false
-                        }
-                    }
+                    visible: true
                 }
 
                 // Fallback icon
@@ -95,14 +71,14 @@ StyledRect {
                 // Play/Pause overlay (only visible on hover)
                 Rectangle {
                     anchors.fill: parent
-                    radius: parent.radius
+                    radius: Settings.settings.radius
                     color: Qt.rgba(0, 0, 0, 0.5)
                     visible: playButton.containsMouse
                     z: 2
 
                     TextIcon {
                         anchors.centerIn: parent
-                        text: MusicManager.isPlaying ? "\uf691" : "\uf690"
+                        text: MusicManager.isPlaying ? "\uf690" : "\uf691"
                         font.pixelSize: 16
                         color: "white"
                     }

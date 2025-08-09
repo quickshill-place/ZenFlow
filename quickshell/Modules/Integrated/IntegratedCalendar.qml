@@ -6,10 +6,12 @@ import Quickshell
 import Quickshell.Wayland
 import qs.Components
 import qs.Settings
+import qs.Modules
 
 StyledRect {
-    color: Theme.backgroundPrimary
-    border.color: Theme.backgroundTertiariy
+    id: calendarOverlay
+    color: "transparent"
+    border.color: "transparent"
     border.width: 1
     width: parent.width
     height: 380
@@ -46,7 +48,7 @@ StyledRect {
                 Layout.fillWidth: true
                 horizontalAlignment: Text.AlignHCenter
                 text: calendar.title
-                color: Theme.textPrimary
+                color: Settings.settings.isDark ? Theme.textPrimary : Theme.backgroundPrimary
                 opacity: 0.7
                 font.pixelSize: 13
                 font.family: Theme.fontFamily
@@ -71,7 +73,7 @@ StyledRect {
 
             delegate: Text {
                 text: shortName
-                color: Theme.textPrimary
+                color: Settings.settings.isDark ? Theme.textPrimary : Theme.backgroundPrimary
                 opacity: 0.8
                 font.pixelSize: 13
                 font.family: Theme.fontFamily
@@ -153,7 +155,8 @@ StyledRect {
                 Text {
                     anchors.centerIn: parent
                     text: model.day
-                    color: model.today ? Theme.onAccent : Theme.textPrimary
+                    color: model.today ? Theme.onAccent : (Settings.settings.isDark ? Theme.textPrimary : Theme.backgroundPrimary)
+
                     opacity: model.month === calendar.month ? (mouseArea2.containsMouse ? 1 : 0.7) : 0.3
                     font.pixelSize: 13
                     font.family: Theme.fontFamily

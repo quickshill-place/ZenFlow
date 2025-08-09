@@ -1,49 +1,52 @@
 import QtQuick
 import qs.Components
 import qs.Settings
+import qs.Services
 
 Item {
     id: root
-    property int innerRadius: 34 * Theme.scale(Screen)
-    property int outerRadius: 48 * Theme.scale(Screen)
-    property color fillColor: "#fff"
-    property color strokeColor: "#fff"
+
+    // Properties
+    property int limit: 48 * Theme.scale(Screen)
     property int strokeWidth: 0 * Theme.scale(Screen)
     property var values: []
     property int usableOuter: 48
+    property color fillColor: Settings.settings.isDark ? (MusicManager.isPlaying ? Theme.textPrimary : Theme.backgroundPrimary) : (MusicManager.isPlaying ? Theme.backgroundPrimary : Theme.textPrimary)// Add default color
+    property int innerRadius: 10 // Add default inner radius
+    property int barWidth: 4 * Theme.scale(Screen)
+    property int barSpacing: 0 * Theme.scale(Screen)
+    property int animationDuration: 120
 
-    width: usableOuter * 2
-    height: usableOuter * 2
+    // Calculate total width based on bars and spacing
+    width: (root.values.length * (barWidth + barSpacing)) - barSpacing
+    height: 380
 
-    onOuterRadiusChanged: () => {
-        usableOuter = Settings.settings.visualizerType === "fire" ? outerRadius * 0.85 : outerRadius;
+    onLimitChanged: {
+        usableOuter = Settings.settings.visualizerType === "fire" ? limit * 0.9 : limit;
     }
-    rotation: 180
-
     Repeater {
         model: root.values.length
+
         Rectangle {
-            property real value: root.values[index]
-            property real angle: (index / root.values.length) * 360
-            width: Math.max(2 * Theme.scale(Screen), (root.innerRadius * 2 * Math.PI) / root.values.length - 4 * Theme.scale(Screen))
-            height: Settings.settings.visualizerType === "diamond" ? value * 2 * (usableOuter - root.innerRadius) : value * (usableOuter - root.innerRadius)
-            radius: width / 2
+            id: bar
+            property real value: root.values[index] || 0
+
+            width: root.barWidth
+            height: Math.max(2, value * (root.usableOuter - root.innerRadius))
             color: root.fillColor
-            border.color: root.strokeColor
-            border.width: root.strokeWidth
             antialiasing: true
 
-            x: Settings.settings.visualizerType === "radial" ? root.width / 2 - width / 2 : root.width / 2 + root.innerRadius * Math.cos(Math.PI / 2 + 2 * Math.PI * index / root.values.length) - width / 2
+            // Position bars horizontally with proper spacing
+            x: index * (root.barWidth + root.barSpacing)
 
-            transform: [
-                Translate {
-                    x: Settings.settings.visualizerType === "radial" ? root.innerRadius * Math.cos(2 * Math.PI * index / root.values.length) : 0
-                }
-            ]
+            // Anchor bars to bottom for upward growth
+            anchors.top: parent.top
 
+            // Smooth animation for height changes
             Behavior on height {
                 SmoothedAnimation {
-                    duration: 120
+                    duration: root.animationDuration
+                    velocity: -1 // Smooth velocity-based animation
                 }
             }
         }

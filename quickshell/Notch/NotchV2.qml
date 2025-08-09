@@ -19,9 +19,12 @@ MaskedPanel {
     id: root
     property bool isHovering: false
     property bool expandContent: false
+    property real radius: Settings.settings.radius
+    property bool hasRadius: Settings.settings.hasRadius
+
     StyledRect {
         id: rect
-        radius: root.expandContent ? width / 10 : 50
+        radius: root.hasRadius ? 50 : 0
         width: root.expandContent ? 400 : 48
         height: root.expandContent ? parent.height / 1.5 : 200
         anchors {

@@ -117,7 +117,7 @@ Singleton {
     property color overlay: applyOpacity(themeData.overlay, "66")
 
     // Font Properties
-    property string fontFamily: "Roboto"         // Family for all text
+    property string fontFamily: "ZedMono Nerd Font"         // Family for all text
 
     // Font size multiplier - adjust this in Settings.json to scale all fonts
     property real fontSizeMultiplier: Settings.settings.fontSizeMultiplier || 1.0
@@ -127,4 +127,6 @@ Singleton {
     property int fontSizeBody: Math.round(16 * fontSizeMultiplier)       // Body text and general content
     property int fontSizeSmall: Math.round(14 * fontSizeMultiplier)      // Small text like clock, labels
     property int fontSizeCaption: Math.round(12 * fontSizeMultiplier)    // Captions and fine print
+    property real borderWidth: 4
+    property real radius: 50
 }

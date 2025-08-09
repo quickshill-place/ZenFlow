@@ -153,7 +153,7 @@ Singleton {
 
     Cava {
         id: cava
-        count: 380
+        count: 86
     }
 
     // Expose cava values
