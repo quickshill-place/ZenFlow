@@ -6,11 +6,10 @@ import QtQuick.Effects
 import qs.Settings
 import qs.Services
 import qs.Components
-import qs.Modules.Integrated.MusicModules
 
 StyledRect {
     id: mediaControl
-    width: 400
+    width: parent.width - 32
     height: parent.height
     color: "transparent"
 
@@ -32,8 +31,7 @@ StyledRect {
                 width: parent.width * Theme.scale(Screen) - Settings.settings.globalMargin * 2
                 height: parent.height * Theme.scale(Screen) - Settings.settings.globalMargin * 2
                 anchors.centerIn: parent
-                radius: Settings.settings.hasRadius ? (width + height) / 16 : 0
-
+                radius: Settings.settings.hasRadius ? Theme.radius : 0
                 color: Qt.darker(Theme.surface, 1.1)
                 border.color: Qt.rgba(Theme.accentPrimary.r, Theme.accentPrimary.g, Theme.accentPrimary.b, 0.3)
                 border.width: 1
@@ -47,12 +45,10 @@ StyledRect {
                     z: 2
                 }
 
-                ScrollingText {}
-
                 Image {
                     id: albumArt
                     anchors.fill: parent
-                    anchors.margins: 0
+                    anchors.margins: 1
                     fillMode: Image.PreserveAspectCrop
                     smooth: true
                     mipmap: true
@@ -63,9 +59,10 @@ StyledRect {
                 }
 
                 // Fallback icon
-                TextIcon {
+                StyledText {
                     anchors.centerIn: parent
-                    text: "\uf00d"
+                    text: "music_note"
+                    font.family: "Material Symbols Outlined"
                     font.pixelSize: 14 * Theme.scale(Screen)
                     visible: !albumArt.visible
                 }
@@ -73,49 +70,26 @@ StyledRect {
                 // Play/Pause overlay (only visible on hover)
                 Rectangle {
                     anchors.fill: parent
-                    radius: Settings.settings.hasRadius ? (width + height) / 16 : 0
+                    radius: Settings.settings.radius
                     color: Qt.rgba(0, 0, 0, 0.5)
+                    visible: playButton.containsMouse
                     z: 2
 
-                    Row {
-                        width: parent.width / 2.5
-                        height: parent.height / 2.5
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: Settings.settings.globalMargin
-
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        TextIcon {
-                            id: prev
-                            anchors.right: stop.left
-                            text: "\uf697"
-                            font.pixelSize: 48
-                            color: "white"
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-                        TextIcon {
-                            id: stop
-                            anchors.centerIn: parent
-                            text: MusicManager.isPlaying ? "\uf690" : "\uf691"
-                            font.pixelSize: 64
-                            color: "white"
-                            MouseArea {
-                                id: playButton
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                hoverEnabled: true
-                                enabled: MusicManager.canPlay || MusicManager.canPause
-                                onClicked: MusicManager.playPause()
-                            }
-                        }
-                        TextIcon {
-                            id: next
-                            anchors.left: stop.right
-                            text: "\uf696"
-                            font.pixelSize: 48
-                            color: "white"
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
+                    TextIcon {
+                        anchors.centerIn: parent
+                        text: MusicManager.isPlaying ? "\uf690" : "\uf691"
+                        font.pixelSize: 16
+                        color: "white"
                     }
+                }
+
+                MouseArea {
+                    id: playButton
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    hoverEnabled: true
+                    enabled: MusicManager.canPlay || MusicManager.canPause
+                    onClicked: MusicManager.playPause()
                 }
             }
         }
@@ -127,6 +101,8 @@ StyledRect {
             font.family: Theme.fontFamily
             font.pixelSize: 12 * Theme.scale(Screen)
             elide: Text.ElideRight
+            Layout.maximumWidth: 300
+            Layout.alignment: Qt.AlignVCenter
         }
     }
 }

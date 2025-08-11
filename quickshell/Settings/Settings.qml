@@ -34,7 +34,7 @@ Singleton {
             property string profileImage: Quickshell.env("HOME") + "/.face"
             property string wallpaperFolder: Quickshell.env("HOME") + "/Wallpapers"
             property string weatherCity: ""
-            property string currentWallpaper: Paths.home + "/Wallpapers/anime-girl-ballons.png"
+            property string currentWallpaper: ""
             property string wallpaperResize: "crop"
             property string transitionType: "random"
             property string visualizerType: "radial"
@@ -56,7 +56,7 @@ Singleton {
             property bool reverseDayMonth: false
             property bool use12HourClock: false
             property bool dimPanels: true
-            property bool darkMode: true
+            property bool darkMode: false
             property bool hasRadius: false
             property real fontSizeMultiplier: 1.0
             property real transitionDuration: 1.1
