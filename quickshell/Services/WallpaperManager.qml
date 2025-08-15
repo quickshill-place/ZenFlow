@@ -36,6 +36,7 @@ Singleton {
     function setCurrentWallpaper(path, isInitial) {
         currentWallpaper = path;
         generateTheme();
+        Settings.settings.currentWallpaper = path;
     }
 
     function setRandomWallpaper() {
@@ -96,7 +97,7 @@ Singleton {
 
     Process {
         id: generateThemeProcess
-        command: ["wallust", "run", currentWallpaper, "-u", "-k", "-d", "Themes"]
+        command: ["wallust", "run", currentWallpaper, "-u", "-k", "-d", "/home/zen/zenflow/quickshell/Themes"]
         running: false
     }
 }

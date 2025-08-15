@@ -1,6 +1,7 @@
 pragma Singleton
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Services.Mpris
 import qs.Settings
 import qs.Components
@@ -22,7 +23,10 @@ Singleton {
     property bool canGoNext: currentPlayer ? currentPlayer.canGoNext : false
     property bool canGoPrevious: currentPlayer ? currentPlayer.canGoPrevious : false
     property bool canSeek: currentPlayer ? currentPlayer.canSeek : false
+    property bool canControl: currentPlayer ? currentPlayer.canControl : false
+    property bool shuffle: currentPlayer.shuffle
     property bool hasPlayer: getAvailablePlayers().length > 0
+    readonly property bool shuffleSupported: currentPlayer ? currentPlayer.shuffleSupported : false
 
     Item {
         Component.onCompleted: {
@@ -109,6 +113,12 @@ Singleton {
         if (currentPlayer && currentPlayer.canSeek) {
             currentPlayer.position = position;
             currentPosition = position;
+        }
+    }
+
+    function shuffle() {
+        if (currentPlayer && currentPlayer.shuffleSupported && currentPlayer.canControl) {
+            manager.shuffle = !manager.shuffle;
         }
     }
 

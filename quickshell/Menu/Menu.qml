@@ -22,36 +22,28 @@ PanelWindow {
         }
     }
 
-    property bool show: Settings.settings.showMenu
-    property bool showContent: false
-    visible: showContent
     color: "transparent"
 
-    onShowChanged: {
-        if (show === false) {
-            // Start the hide timer
-            hideContentTimer.start();
-        } else {
-            showContent = true;
-        }
-    }
-    Timer {
-        id: hideContentTimer
-        interval: 350 // Adjust this value for the desired delay
-        onTriggered: showContent = false
-    }
     StyledRect {
         id: menu
         radius: 50
-        visible: root.showContent
+
         anchors.centerIn: parent
-        implicitWidth: root.show ? parent.width / 2 : 0
-        implicitHeight: root.show ? parent.height / 2 : 0
-        Behavior on implicitWidth {
-            SpringyAnimation {}
+        width: Settings.settings.enableMenu ? parent.width / 2 : 0
+        height: Settings.settings.enableMenu ? parent.height / 2 : 0
+        Behavior on width {
+            NumberAnimation {
+                duration: Settings.settings.animationDuration
+                easing.overshoot: 0.1
+                easing.type: Easing.OutBack
+            }
         }
-        Behavior on implicitHeight {
-            SpringyAnimation {}
+        Behavior on height {
+            NumberAnimation {
+                duration: Settings.settings.animationDuration
+                easing.overshoot: 0.1
+                easing.type: Easing.OutBack
+            }
         }
         StyledRect {
             id: tabbie
@@ -60,14 +52,6 @@ PanelWindow {
             anchors.topMargin: 16
             anchors.horizontalCenter: parent.horizontalCenter
 
-            Text {
-                id: textie
-                property int counter
-                text: counter
-                font.pointSize: 20
-
-                z: 100
-            }
             Tabs {
                 id: settingsTabs
                 tabsModel: [
@@ -79,6 +63,9 @@ PanelWindow {
                     },
                     {
                         icon: "\uf673"
+                    },
+                    {
+                        icon: "\ufe1b"
                     }
                 ]
 

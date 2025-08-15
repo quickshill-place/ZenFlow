@@ -33,7 +33,7 @@ Singleton {
             property string videoPath: Quickshell.env("HOME") + "/Videos"
             property string profileImage: Quickshell.env("HOME") + "/.face"
             property string wallpaperFolder: Quickshell.env("HOME") + "/Wallpapers"
-            property string weatherCity: ""
+            property string weatherCity: "Rome"
             property string currentWallpaper: ""
             property string wallpaperResize: "crop"
             property string transitionType: "random"
@@ -41,23 +41,20 @@ Singleton {
             property int wallpaperInterval: 300
             property int animationDuration: 300
             property int taskbarIconSize: 24
-            property int transitionFps: 90
-            //property int rotation: Direction.Top
             property bool useFahrenheit: false
-            property bool showActiveWindowIcon: false
-            property bool showSystemInfoInBar: false
-            property bool showCorners: true
-            property bool showTaskbar: true
-            property bool showMenu: true
-            property bool showNotch: false
-            property bool showMediaInBar: false
-            property bool randomWallpaper: false
+            property bool enableNotch: false
+            property bool enableMenu: false
+            property bool enableBackground: true
+            property bool enableBackgroundSwitcher: false
+            property bool enableAppLauncher: false
+            property bool enableCheatsheet: false
+            property bool expandContent: false
             property bool useWallpaperTheme: false
             property bool reverseDayMonth: false
             property bool use12HourClock: false
             property bool dimPanels: true
-            property bool darkMode: false
-            property bool hasRadius: false
+            property bool darkMode: true
+            property bool hasRadius: true
             property real fontSizeMultiplier: 1.0
             property real transitionDuration: 1.1
             property real globalMargin: 16

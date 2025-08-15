@@ -60,8 +60,9 @@ Item {
 
                             Behavior on color {
                                 ColorAnimation {
-                                    duration: 300
-                                    easing.type: Easing.InQuad
+                                    duration: Settings.settings.animationDuration
+                                    easing.overshoot: 0.1
+                                    easing.type: Easing.OutBack
                                 }
                             }
                         }

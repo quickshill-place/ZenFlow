@@ -5,34 +5,20 @@ import Quickshell
 import Quickshell.Io
 import Qt5Compat.GraphicalEffects
 import Quickshell.Wayland
-import qs.Settings
-import qs.Components
-import "Fuzzysort.js" as Fuzzysort
-import "colors.js" as Colors
+import "root:/Services/Fuzzysort.js" as Fuzzysort
 
 PanelWindow {
     id: appLauncherPanel
-
-    anchors {
-        left: true
-        right: true
-        bottom: true
-        top: true
-    }
+    implicitWidth: 460
+    implicitHeight: 640 + 32
     color: "transparent"
-    visible: true
+    visible: false
     WlrLayershell.exclusionMode: ExclusionMode.Ignore
     WlrLayershell.keyboardFocus: visible ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
     screen: (typeof modelData !== 'undefined' ? modelData : null)
-    property bool shouldBeVisible: Settings.settings.enableAppLauncher
+    property bool shouldBeVisible: false
 
-    mask: Region {
-        x: root.x
-        y: root.y
-        height: root.height
-        width: root.width
-    }
-
+    anchors.top: true
     Component.onCompleted: {
         showAt();
     }
@@ -46,46 +32,39 @@ PanelWindow {
     }
 
     function hidePanel() {
-        Settings.settings.enableAppLauncher = false;
+        shouldBeVisible = false;
         searchField.text = "";
         root.selectedIndex = 0;
     }
 
-    Timer {
-        id: shouldBeVisibleTimer
-        running: false
-        interval: 300
-        onTriggered: Settings.settings.enableAppLauncher = false
-    }
-
-    StyledRect {
+    Rectangle {
         id: root
-        width: Settings.settings.enableAppLauncher ? 400 : 48
-        height: Settings.settings.enableAppLauncher ? parent.height / 1.5 : 200
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 16
+        width: 400
+        height: 640
+        radius: 16
+
+        color: Colors.blue
+
         property var appModel: DesktopEntries.applications.values
         property var filteredApps: []
         property int selectedIndex: 0
         property int targetY: (parent.height - height) / 2 + 16
-        Behavior on width {
+        y: appLauncherPanel.shouldBeVisible ? targetY : -height
+        Behavior on y {
             NumberAnimation {
-                duration: Settings.settings.animationDuration
-                easing.type: Easing.OutBack
-                easing.overshoot: 1.1
+                duration: 300
+                easing.type: Easing.OutCubic
             }
         }
-        Behavior on height {
+        scale: appLauncherPanel.shouldBeVisible ? 1 : 0
+        Behavior on scale {
             NumberAnimation {
-                duration: Settings.settings.animationDuration
-                easing.type: Easing.OutBack
-                easing.overshoot: 1.1
+                duration: 200
+                easing.type: Easing.InOutCubic
             }
         }
-
         onScaleChanged: {
-            if (scale === 0 && !Settings.settings.enableAppLauncher) {
+            if (scale === 0 && !appLauncherPanel.shouldBeVisible) {
                 appLauncherPanel.visible = false;
             }
         }

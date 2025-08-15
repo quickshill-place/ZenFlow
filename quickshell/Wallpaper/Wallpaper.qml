@@ -4,26 +4,35 @@ import Quickshell.Wayland
 import qs.Settings
 import qs.Services
 
-PanelWindow {
-    id: root
-    exclusionMode: ExclusionMode.Ignore
-    WlrLayershell.layer: WlrLayer.Background
+Variants {
+    model: Quickshell.screens
 
-    CachingImages {
-        id: img
-        path: WallpaperManager.currentWallpaper
+    delegate: Component {
+        PanelWindow {
+            id: root
+            exclusionMode: ExclusionMode.Ignore
+            WlrLayershell.layer: WlrLayer.Background
+            required property var modelData
 
-        width: parent.width
-        height: parent.height
+            // we can then set the window's screen to the injected property
+            screen: modelData
+            CachingImages {
+                id: img
+                path: WallpaperManager.currentWallpaper
+
+                width: parent.width
+                height: parent.height
+            }
+
+            anchors {
+                left: true
+                right: true
+                top: true
+                bottom: true
+            }
+            color: "transparent"
+
+            aboveWindows: false
+        }
     }
-
-    anchors {
-        left: true
-        right: true
-        top: true
-        bottom: true
-    }
-    color: "transparent"
-
-    aboveWindows: false
 }

@@ -15,11 +15,7 @@ StyledRect {
     border.width: 1
     width: parent.width
     height: 380
-    anchors.top: parent.top
-    anchors.right: parent.right
-    anchors.topMargin: 4
-    anchors.rightMargin: 4
-    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.centerIn: parent
     // Prevent closing when clicking in the panel bg
     MouseArea {
         anchors.fill: parent
@@ -36,7 +32,7 @@ StyledRect {
             spacing: 8
 
             IconButton {
-                icon: "chevron_left"
+                icon: "\uea60"
                 onClicked: {
                     let newDate = new Date(calendar.year, calendar.month - 1, 1);
                     calendar.year = newDate.getFullYear();
@@ -56,7 +52,7 @@ StyledRect {
             }
 
             IconButton {
-                icon: "chevron_right"
+                icon: "\uea61"
                 onClicked: {
                     let newDate = new Date(calendar.year, calendar.month + 1, 1);
                     calendar.year = newDate.getFullYear();
@@ -96,9 +92,7 @@ StyledRect {
             }
 
             Layout.fillWidth: true
-            Layout.leftMargin: 8
-            Layout.rightMargin: 8
-            spacing: 0
+            spacing: 4
             month: Time.date.getMonth()
             year: Time.date.getFullYear()
             onMonthChanged: updateHolidays()
@@ -125,20 +119,13 @@ StyledRect {
                 })
                 property bool isHoliday: holidayInfo.length > 0
 
-                width: 32
+                width: 8
                 height: 32
-                radius: 8
-                color: {
-                    if (model.today)
-                        return Theme.accentPrimary;
+                radius: 50
 
-                    if (mouseArea2.containsMouse)
-                        return Theme.backgroundTertiary;
+                color: model.today ? Theme.accentPrimary : mouseArea2.containsMouse ? Settings.settings.darkMode ? Theme.textPrimary : Theme.backgroundTertiary : "transparent"
 
-                    return "transparent";
-                }
-
-                // Holiday dot indicator
+                // Holiday dot indicaTtor
                 Rectangle {
                     visible: isHoliday
                     width: 4
@@ -155,14 +142,13 @@ StyledRect {
                 Text {
                     anchors.centerIn: parent
                     text: model.day
-                    color: model.today ? Theme.onAccent : (Settings.settings.darkMode ? Theme.textPrimary : Theme.backgroundPrimary)
+                    color: model.today ? Theme.onAccent : (mouseArea2.containsMouse ? Settings.settings.darkMode ? Theme.backgroundPrimary : Theme.textPrimary : Settings.settings.darkMode ? Theme.textPrimary : Theme.backgroundPrimary)
 
                     opacity: model.month === calendar.month ? (mouseArea2.containsMouse ? 1 : 0.7) : 0.3
                     font.pixelSize: 13
                     font.family: Theme.fontFamily
                     font.bold: model.today ? true : false
                 }
-
                 MouseArea {
                     id: mouseArea2
 
@@ -193,6 +179,35 @@ StyledRect {
                     ColorAnimation {
                         duration: 150
                     }
+                }
+            }
+        }
+        StyledRect {
+            color: Theme.backgroundSecondary
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            Row {
+                anchors.leftMargin: Settings.settings.globalMargin
+                anchors.rightMargin: Settings.settings.globalMargin
+                anchors.fill: parent
+                anchors.centerIn: parent
+                IconButton {
+                    icon: "\uebba"
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                IconButton {
+
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                IconButton {
+
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                IconButton {
+
+                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
         }

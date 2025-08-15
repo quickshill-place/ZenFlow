@@ -1,7 +1,8 @@
 import QtQuick
+import qs.Settings
 
-SpringAnimation {
-    spring: 15.0  // Extremely high spring
-    damping: 0.5  // Almost critically damped
-    epsilon: 1.0  // Large epsilon for early stop
+NumberAnimation {
+    duration: Settings.settings.animationDuration
+    overshoot: 0.1
+    easing.type: Easing.OutBack
 }
