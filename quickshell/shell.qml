@@ -17,8 +17,6 @@ import qs.Settings
 
 ShellRoot {
 
-    Kanban {}
-
     Connections {
         function onReloadCompleted() {
             Quickshell.inhibitReloadPopup();

@@ -4,6 +4,7 @@ import qs.Components
 import qs.Settings
 import qs.Generics
 import qs.Notch
+import qs.Components.Styled
 
 PanelWindow {
     id: root

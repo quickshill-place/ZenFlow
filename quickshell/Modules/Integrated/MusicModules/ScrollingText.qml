@@ -4,6 +4,8 @@ import qs.Settings
 import qs.Components
 import qs.Modules
 import qs.Services
+import qs.Components.Styled
+import qs.Components.Icons
 
 StyledRect {
     id: rect

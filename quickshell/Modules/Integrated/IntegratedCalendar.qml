@@ -1,4 +1,4 @@
-import "root:/Components/holidays.js" as Holidays
+import "root:/Services/holidays.js" as Holidays
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -7,6 +7,12 @@ import Quickshell.Wayland
 import qs.Components
 import qs.Settings
 import qs.Modules
+import qs.Components.Styled
+import qs.Components.Capsule
+import qs.Components.Concentric
+import qs.Components.Fixed
+import qs.Components.Panels
+import qs.Components.Icons
 
 StyledRect {
     id: calendarOverlay

@@ -73,7 +73,7 @@ Item {
         // Underline for active tab
         Rectangle {
             height: 32
-            radius: 8
+            radius: height / 2
             color: Theme.accentTertiary
             x: repetah.itemAt(root.currentIndex) ? repetah.itemAt(root.currentIndex).x : 0
             implicitWidth: repetah.itemAt(root.currentIndex) ? repetah.itemAt(root.currentIndex).implicitWidth : 56

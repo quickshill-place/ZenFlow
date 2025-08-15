@@ -2,6 +2,7 @@ import qs.Settings
 import Quickshell
 import QtQuick
 import qs.Components
+import qs.Components.Icons
 
 IconButton {
     icon: "\ufaab"

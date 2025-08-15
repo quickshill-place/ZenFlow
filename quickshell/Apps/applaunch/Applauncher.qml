@@ -9,6 +9,8 @@ import qs.Settings
 import qs.Components
 import "Fuzzysort.js" as Fuzzysort
 import "colors.js" as Colors
+import qs.Components.Panels
+import qs.Components.Styled
 
 PanelWindow {
     id: appLauncherPanel

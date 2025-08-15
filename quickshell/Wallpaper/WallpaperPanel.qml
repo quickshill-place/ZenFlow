@@ -7,6 +7,9 @@ import Quickshell.Widgets
 import Quickshell.Wayland
 import qs.Settings
 import qs.Services
+import qs.Components
+
+import qs.Components.Styled
 
 PanelWindow {
     id: wallpaperPanelModal
@@ -49,7 +52,6 @@ PanelWindow {
         implicitWidth: parent.width / 2
         implicitHeight: parent.height / 2
         color: Theme.backgroundPrimary
-        radius: 24
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 32
@@ -86,12 +88,11 @@ PanelWindow {
                         delegate: Item {
                             width: wallpaperGrid.cellWidth - 8
                             height: wallpaperGrid.cellHeight - 8
-                            ClippingRectangle {
+                            StyledClippingRect {
                                 id: wallpaperItem
                                 anchors.fill: parent
                                 anchors.margins: 4
                                 color: Qt.darker(Theme.backgroundPrimary, 1.1)
-                                radius: 12
                                 border.color: Settings.settings.currentWallpaper === modelData ? Theme.accentPrimary : Theme.outline
                                 border.width: Settings.settings.currentWallpaper === modelData ? 3 : 1
                                 CachingImages {

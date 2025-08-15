@@ -1,5 +1,6 @@
 import qs.Settings
 import qs.Components
+import qs.Components.Icons
 import Quickshell.Io
 import Quickshell
 import QtQuick

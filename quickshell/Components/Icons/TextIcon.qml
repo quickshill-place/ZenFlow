@@ -1,6 +1,7 @@
 import Quickshell
 import QtQuick
 import qs.Settings
+import qs.Components.Styled
 
 StyledText {
     text: ""

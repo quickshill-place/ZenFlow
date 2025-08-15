@@ -7,6 +7,12 @@ import qs.Settings
 import qs.Services
 import qs.Components
 import qs.Modules.Integrated.MusicModules
+import qs.Components.Styled
+import qs.Components.Capsule
+import qs.Components.Concentric
+import qs.Components.Fixed
+import qs.Components.Panels
+import qs.Components.Icons
 
 StyledRect {
     id: mediaControl

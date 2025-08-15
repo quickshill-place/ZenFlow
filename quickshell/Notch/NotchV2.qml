@@ -14,6 +14,11 @@ import qs.Components
 import qs.Generics
 import qs.Modules
 import qs.Modules.Integrated
+import qs.Components.Styled
+import qs.Components.Capsule
+import qs.Components.Concentric
+import qs.Components.Fixed
+import qs.Components.Panels
 
 Variants {
     model: Quickshell.screens

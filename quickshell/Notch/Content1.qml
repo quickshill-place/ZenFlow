@@ -9,6 +9,12 @@ import qs.Components
 import qs.Modules.Integrated
 import qs.Notch.NotchModules
 
+import qs.Components.Styled
+import qs.Components.Capsule
+import qs.Components.Concentric
+import qs.Components.Fixed
+import qs.Components.ShapesNStuff
+
 StyledRect {
     anchors.fill: parent
     SwipeView {

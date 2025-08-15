@@ -53,7 +53,7 @@ Singleton {
             property bool reverseDayMonth: false
             property bool use12HourClock: false
             property bool dimPanels: true
-            property bool darkMode: true
+            property bool darkMode: false
             property bool hasRadius: true
             property real fontSizeMultiplier: 1.0
             property real transitionDuration: 1.1
